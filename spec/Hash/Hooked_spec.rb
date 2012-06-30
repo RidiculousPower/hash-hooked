@@ -1,5 +1,5 @@
 
-require_relative '../../lib/hooked-hash.rb'
+require_relative '../../lib/hash-hooked.rb'
 
 describe ::Hash::Hooked do
 

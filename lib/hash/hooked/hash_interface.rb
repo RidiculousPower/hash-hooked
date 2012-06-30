@@ -1,6 +1,8 @@
 
-class ::Hash::Hooked < ::Hash
-
+module ::Hash::Hooked::HashInterface
+  
+  instances_identify_as!( ::Hash::Hooked )
+  
   ######################################  Subclass Hooks  ##########################################
 
   ##################
@@ -137,14 +139,6 @@ class ::Hash::Hooked < ::Hash
   #########
   #  []=  #
   #########
-
-  private
-    # Alias to original :[]= method. Used to perform actual set between hooks.
-    # @param [Object] key Key where object is to be stored.
-    # @param [Object] object Element being stored.
-    # @return [Object] Element returned.
-    alias_method :perform_set_between_hooks, :store
-  public
   
   def []=( key, object )
     
@@ -161,6 +155,7 @@ class ::Hash::Hooked < ::Hash
     return object
 
   end
+  
   alias_method :store, :[]=
 
   #########################
@@ -186,13 +181,6 @@ class ::Hash::Hooked < ::Hash
   ############
   #  delete  #
   ############
-
-  private
-  # Alias to original :delete method. Used to perform actual delete between hooks.
-  # @param [Object] key Key where object is to be stored.
-  # @return [Object] Element returned.
-    alias_method :perform_delete_between_hooks, :delete
-  public
   
   def delete( key )
 
@@ -398,10 +386,6 @@ class ::Hash::Hooked < ::Hash
   #  merge!  #
   #  update  #
   ############
-  
-  private
-    alias_method :perform_merge_between_hooks!, :merge!
-  public
 
   def merge!( other_hash )
 
@@ -416,6 +400,7 @@ class ::Hash::Hooked < ::Hash
     return self
 
   end
+
   alias_method :update, :merge!
   
   ##########################
@@ -436,6 +421,7 @@ class ::Hash::Hooked < ::Hash
     return self
     
   end
+  
   alias_method :update_without_hooks, :merge_without_hooks!
   
   #############
@@ -537,5 +523,5 @@ class ::Hash::Hooked < ::Hash
     return self
     
   end
-
+  
 end

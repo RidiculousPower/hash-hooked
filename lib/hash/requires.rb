@@ -1,22 +1,17 @@
 
-require 'identifies_as'
-
-class ::Hash::Hooked < ::Hash
-end
-class ::HookedHash < ::Hash::Hooked
-end
-
-basepath = 'hooked-hash/Hash/Hooked'
+basepath = 'hooked'
 
 files = [
+
+  'hash_interface'
     
 ]
 
-second_basepath = 'hooked-hash/HookedHash'
+second_basepath = '../hooked_hash'
 
 second_files = [
   
-  'Interface'
+  'hash_interface'
   
 ]
 

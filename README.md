@@ -1,6 +1,6 @@
 # Hooked Hash #
 
-http://rubygems.org/gems/hooked-hash
+http://rubygems.org/gems/hash-hooked
 
 # Description #
 
@@ -12,7 +12,7 @@ A subclass of Hash that offers event hooks for pre-set/pre-delete, set/delete. :
 
 # Install #
 
-* sudo gem install hooked-hash
+* sudo gem install hash-hooked
 
 # Usage #
 
