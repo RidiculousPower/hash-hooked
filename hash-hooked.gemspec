@@ -2,8 +2,8 @@ require 'date'
 
 Gem::Specification.new do |spec|
 
-  spec.name                      =  'hooked-hash'
-  spec.rubyforge_project         =  'hooked-hash'
+  spec.name                      =  'hash-hooked'
+  spec.rubyforge_project         =  'hash-hooked'
   spec.version                   =  '1.0.0'
 
   spec.summary                   =  "Provides ::Hash::Hooked and ::HookedHash."
@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.authors                   =  [ 'Asher' ]
   spec.email                     =  'asher@ridiculouspower.com'
-  spec.homepage                  =  'http://rubygems.org/gems/hooked-hash'
+  spec.homepage                  =  'http://rubygems.org/gems/hash-hooked'
 
   spec.add_dependency            'identifies_as'
 
