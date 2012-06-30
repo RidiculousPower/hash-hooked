@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
 
   spec.name                      =  'hash-hooked'
   spec.rubyforge_project         =  'hash-hooked'
-  spec.version                   =  '1.0.0'
+  spec.version                   =  '1.1.0'
 
   spec.summary                   =  "Provides ::Hash::Hooked and ::HookedHash."
   spec.description               =  "A subclass of Hash that offers event hooks for pre-set/pre-delete, set/delete. ::HookedHash offers implicit reference to a configuration instance."
