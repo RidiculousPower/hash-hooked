@@ -1,6 +1,8 @@
 
 module ::Hash::Hooked::HashInterface
   
+  include ::IdentifiesAs
+  
   instances_identify_as!( ::Hash::Hooked )
 
   ################
@@ -520,10 +522,8 @@ module ::Hash::Hooked::HashInterface
   ###########
   
   def clear
-
-    keys.each do |this_key|
-      delete( this_key )
-    end
+    
+    delete_if { true }
 
     return self
 
