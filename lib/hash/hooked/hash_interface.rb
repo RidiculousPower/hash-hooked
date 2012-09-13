@@ -26,7 +26,7 @@ module ::Hash::Hooked::HashInterface
     
     @configuration_instance = configuration_instance
 
-    super( *args )
+    super( *hash_initialization_args )
         
   end
 
