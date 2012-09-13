@@ -9,12 +9,20 @@ module ::Hash::Hooked::HashInterface
   #  initialize  #
   ################
 
+  ###
   # Initialize with reference a configuration instance.
-  # @param [Object] object Object that HookedHash instance is attached to, primarily useful for
-  #  reference from hooks.
-  # @param [Hash<Object>] args Parameters passed through super to Hash#initialize.
-  # @return [true,false] Whether receiver identifies as object.
-  def initialize( configuration_instance = nil, *args )
+  #
+  # @overload initialize( configuration_instance, hash_initialization_arg, ... )
+  #
+  #   @param [Object] configuration_instance 
+  #   
+  #          Object that instance will be attached to; primarily useful for reference from hooks.
+  #   
+  #   @param [Object] hash_initialization_arg
+  #   
+  #          Parameters passed through super to Hash#initialize.
+  #
+  def initialize( configuration_instance = nil, *hash_initialization_args )
     
     @configuration_instance = configuration_instance
 
@@ -26,6 +34,13 @@ module ::Hash::Hooked::HashInterface
   #  configuration_instance  #
   ############################
 
+  ###
+  # @!attribute [r]
+  #
+  # @return [Object]
+  #
+  #         Object that instance is attached to; primarily useful for reference from hooks.
+  #
   attr_accessor :configuration_instance
   
   ######################################  Subclass Hooks  ##########################################
@@ -34,10 +49,21 @@ module ::Hash::Hooked::HashInterface
   #  pre_set_hook  #
   ##################
 
+  ###
   # A hook that is called before setting a value; return value is used in place of object.
-  # @param [Object] key Key where object is to be stored.
-  # @param [Object] object Element being stored.
-  # @return [true,false] Return value is used in place of object.
+  #
+  # @param [Object] key 
+  #
+  #        Key where object is to be stored.
+  #
+  # @param [Object] object 
+  #
+  #        Element being stored.
+  #
+  # @return [true,false] 
+  #
+  #         Return value is used in place of object.
+  #
   def pre_set_hook( key, object )
     
     return object
@@ -48,10 +74,21 @@ module ::Hash::Hooked::HashInterface
   #  post_set_hook  #
   ###################
 
+  ###
   # A hook that is called after setting a value.
-  # @param [Object] key Key where object is to be stored.
-  # @param [Object] object Element being stored.
-  # @return [Object] Ignored.
+  #
+  # @param [Object] key 
+  #
+  #        Key where object is to be stored.
+  #
+  # @param [Object] object 
+  #
+  #        Element being stored.
+  #
+  # @return [Object] 
+  #
+  #         Ignored.
+  #
   def post_set_hook( key, object )
 
     return object
@@ -62,9 +99,17 @@ module ::Hash::Hooked::HashInterface
   #  pre_get_hook  #
   ##################
 
+  ###
   # A hook that is called before getting a value; if return value is false, get does not occur.
-  # @param [Object] key Key where object is to be stored.
-  # @return [true,false] If return value is false, get does not occur.
+  #
+  # @param [Object] key 
+  #
+  #        Key where object is to be retrieved.
+  #
+  # @return [true,false] 
+  #
+  #         If return value is false, get does not occur.
+  #
   def pre_get_hook( key )
     
     return true
@@ -75,10 +120,21 @@ module ::Hash::Hooked::HashInterface
   #  post_get_hook  #
   ###################
 
+  ###
   # A hook that is called after getting a value.
-  # @param [Object] key Key where object is to be stored.
-  # @param [Object] object Element being stored.
-  # @return [Object] Object returned in place of get result.
+  #
+  # @param [Object] key 
+  #
+  #        Key where object has been retrieved.
+  #
+  # @param [Object] object 
+  #
+  #        Element retrieved.
+  #
+  # @return [Object] 
+  #
+  #         Object returned in place of get result.
+  #
   def post_get_hook( key, object )
     
     return object
@@ -89,9 +145,17 @@ module ::Hash::Hooked::HashInterface
   #  pre_delete_hook  #
   #####################
 
+  ###
   # A hook that is called before deleting a value; if return value is false, delete does not occur.
-  # @param [Object] key Key where object is to be stored.
-  # @return [true,false] If return value is false, delete does not occur.
+  #
+  # @param [Object] key 
+  #
+  #        Key where object is to be deleted.
+  #
+  # @return [true,false] 
+  #
+  #         If return value is false, delete does not occur.
+  #
   def pre_delete_hook( key )
     
     return true
@@ -102,10 +166,21 @@ module ::Hash::Hooked::HashInterface
   #  post_delete_hook  #
   ######################
 
+  ###
   # A hook that is called after deleting a value.
-  # @param [Object] key Key where object is to be stored.
-  # @param [Object] object Element deleted.
-  # @return [Object] Object returned in place of delete result.
+  #
+  # @param [Object] key 
+  #
+  #        Key where object has been deleted.
+  #
+  # @param [Object] object 
+  #
+  #        Element deleted.
+  #
+  # @return [Object] 
+  #
+  #         Object returned in place of delete result.
+  #
   def post_delete_hook( key, object )
     
     return object
@@ -146,9 +221,17 @@ module ::Hash::Hooked::HashInterface
   #  get_without_hooks  #
   #######################
 
-  # Alias to :[] that bypasses hooks.
-  # @param [Object] key Key where object is to be stored.
-  # @return [Object] Element returned.
+  ###
+  # Alias to #[] that bypasses hooks.
+  #
+  # @param [Object] key 
+  #
+  #        Key where object is to be stored.
+  #
+  # @return [Object] 
+  #
+  #         Object retrieved.
+  #
   def get_without_hooks( key )
     
     @without_hooks = true
@@ -187,10 +270,21 @@ module ::Hash::Hooked::HashInterface
   #  store_without_hooks  #
   #########################
 
-  # Alias to :[]= that bypasses hooks.
-  # @param [Object] key Key where object is to be stored.
-  # @param [Object] object Element being set.
-  # @return [Object] Element returned.
+  ###
+  # Alias to #[]= that bypasses hooks.
+  #
+  # @param [Object] key 
+  #
+  #        Key where object is to be stored.
+  #
+  # @param [Object] object 
+  #
+  #        Element being stored.
+  #
+  # @return [Object] 
+  #
+  #         Element returned.
+  #
   def store_without_hooks( key, object )
     
     @without_hooks = true
@@ -235,9 +329,17 @@ module ::Hash::Hooked::HashInterface
   #  delete_without_hooks  #
   ##########################
 
-  # Alias to :delete that bypasses hooks.
-  # @param [Object] object Element being deleted.
-  # @return [Object] Element returned.
+  ###
+  # Alias to #delete that bypasses hooks.
+  #
+  # @param [Object] object 
+  #
+  #        Element being deleted.
+  #
+  # @return [Object] 
+  #
+  #         Element returned.
+  #
   def delete_without_hooks( key )
     
     @without_hooks = true
@@ -274,9 +376,17 @@ module ::Hash::Hooked::HashInterface
   #  delete_if_without_hooks  #
   #############################
 
-  # Alias to :delete_if that bypasses hooks.
-  # @yield Block passed to :delete_if.
-  # @return [Object] Deleted element.
+  ###
+  # Alias to #delete_if that bypasses hooks.
+  #
+  # @yield 
+  #
+  #         Block passed to :delete_if.
+  #
+  # @return [Object]
+  #
+  #         Deleted element.
+  #
   def delete_if_without_hooks( & block )
     
     @without_hooks = true
@@ -312,9 +422,17 @@ module ::Hash::Hooked::HashInterface
   #  reject_without_hooks!  #
   ###########################
 
-  # Alias to :reject that bypasses hooks.
-  # @yield Block passed to :keep_if.
-  # @return [Object] Self.
+  ###
+  # Alias to #reject that bypasses hooks.
+  #
+  # @yield 
+  #
+  #         Block passed to :keep_if.
+  #
+  # @return [Object] 
+  #
+  #         Self.
+  #
   def reject_without_hooks!
     
     @without_hooks = true
@@ -352,9 +470,17 @@ module ::Hash::Hooked::HashInterface
   #  keep_if_without_hooks  #
   ###########################
 
-  # Alias to :keep_if that bypasses hooks.
-  # @yield Block passed to :keep_if.
-  # @return [Object] Deleted element.
+  ###
+  # Alias to #keep_if that bypasses hooks.
+  #
+  # @yield 
+  #
+  #         Block passed to :keep_if.
+  #
+  # @return [Object] 
+  #
+  #         Deleted element.
+  #
   def keep_if_without_hooks( & block )
     
     @without_hooks = true
@@ -392,9 +518,17 @@ module ::Hash::Hooked::HashInterface
   #  select_without_hooks!  #
   ###########################
 
-  # Alias to :select that bypasses hooks.
-  # @yield Block passed to :select!.
-  # @return [Object] Self.
+  ###
+  # Alias to #select that bypasses hooks.
+  #
+  # @yield 
+  #
+  #         Block passed to :select!.
+  #
+  # @return [Object] 
+  #
+  #         Self.
+  #
   def select_without_hooks!( & block )
     
     @without_hooks = true
@@ -433,8 +567,13 @@ module ::Hash::Hooked::HashInterface
   #  update_without_hooks  #
   ##########################
 
-  # Alias to :merge! that bypasses hooks.
-  # @return [Object] Self.
+  ###
+  # Alias to #merge! that bypasses hooks.
+  #
+  # @return [Object] 
+  #
+  #         Self.
+  #
   def merge_without_hooks!
     
     @without_hooks = true
@@ -469,9 +608,17 @@ module ::Hash::Hooked::HashInterface
   #  replace_without_hooks  #
   ###########################
 
-  # Alias to :replace that bypasses hooks.
-  # @param [Array] other_array Other array to replace self with.
-  # @return [Object] Self.
+  ###
+  # Alias to #replace that bypasses hooks.
+  #
+  # @param [Array] other_hash 
+  #
+  #        Other hash to replace self with.
+  #
+  # @return [Object] 
+  #
+  #         Self.
+  #
   def replace_without_hooks( other_hash )
     
     @without_hooks = true
@@ -503,8 +650,13 @@ module ::Hash::Hooked::HashInterface
   #  shift_without_hooks  #
   #########################
 
-  # Alias to :shift that bypasses hooks.
-  # @return [Object] Self.
+  ###
+  # Alias to #shift that bypasses hooks.
+  #
+  # @return [Object] 
+  #
+  #         Element shifted.
+  #
   def shift_without_hooks
     
     @without_hooks = true
@@ -533,8 +685,13 @@ module ::Hash::Hooked::HashInterface
   #  clear_without_hooks  #
   #########################
 
-  # Alias to :clear that bypasses hooks.
-  # @return [Object] Self.
+  ###
+  # Alias to #clear that bypasses hooks.
+  #
+  # @return [Object] 
+  #
+  #         Self.
+  #
   def clear_without_hooks
     
     @without_hooks = true
