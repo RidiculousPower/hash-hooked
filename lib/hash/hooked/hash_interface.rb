@@ -22,11 +22,17 @@ module ::Hash::Hooked::HashInterface
   #   
   #          Parameters passed through super to Hash#initialize.
   #
-  def initialize( configuration_instance = nil, *hash_initialization_args )
+  def initialize( configuration_instance = nil, default_value = nil, & default_value_block )
     
     @configuration_instance = configuration_instance
-
-    super( *hash_initialization_args )
+    
+    if default_value
+      super( default_value )
+    elsif default_value_block
+      super( & default_value_block )
+    else
+      super()
+    end
         
   end
 
