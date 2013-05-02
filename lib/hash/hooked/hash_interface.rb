@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 
 module ::Hash::Hooked::HashInterface
   
@@ -368,7 +369,7 @@ module ::Hash::Hooked::HashInterface
 
     indexes = [ ]
     
-    self.each do |this_key, this_object|
+    each do |this_key, this_object|
       if yield( this_key, this_object )
         delete( this_key )
       end
@@ -413,7 +414,7 @@ module ::Hash::Hooked::HashInterface
     
     return_value = nil
     
-    self.each do |this_key, this_object|
+    each do |this_key, this_object|
       if yield( this_key, this_object )
         delete( this_key )
         return_value = self
@@ -461,7 +462,7 @@ module ::Hash::Hooked::HashInterface
 
     indexes = [ ]
     
-    self.each do |this_key, this_object|
+    each do |this_key, this_object|
       unless yield( this_key, this_object )
         delete( this_key )
       end
@@ -509,7 +510,7 @@ module ::Hash::Hooked::HashInterface
     
     return_value = nil
     
-    self.each do |this_key, this_object|
+    each do |this_key, this_object|
       unless yield( this_key, this_object )
         delete( this_key )
         return_value = self
